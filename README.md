@@ -1,4 +1,6 @@
-# Libasm (A simple assembly library)
+# Libasm
+
+A simple assembly library
 
 ## Status : on Progress
 
