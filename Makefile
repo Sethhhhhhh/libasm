@@ -22,11 +22,11 @@ SRCS = srcs/ft_strlen.s \
 OBJS = $(SRCS:.s=.o)
 
 $(NAME): $(OBJS) $(HEADER) $(MAIN)
-		ar rcs $(NAME) $(OBJS)
-		$(CC) $(CFLAGS) -I $(HEADER) $(NAME) $(MAIN) 
+		@ar rcs $(NAME) $(OBJS)
+		@$(CC) $(CFLAGS) -I $(HEADER) $(NAME) $(MAIN) 
 
 %.o: %.s
-	nasm -f macho64 $< -o $@
+	@nasm -f macho64 $< -o $@
 
 all: $(NAME)
 
