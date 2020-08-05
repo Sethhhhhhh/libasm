@@ -70,6 +70,6 @@ int     main(void)
     char swrite2[11] = "Hello World";
     printf(" [write] Output_02 = %zd\n", write(filewrite2, swrite2, 11));
     close(filewrite2);
-    
+
     return (0);
 }
