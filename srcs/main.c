@@ -59,13 +59,13 @@ int     main(void)
     printf("| ft_write | Input = srcs/test.txt, Hello World, 11       |\n");
     printf("-----------------------------------------------------------\n\n");
     
-    int filewrite = open("srcs/test.txt", O_RDWR);
+    int filewrite = open("srcs/testt.txt", O_RDWR);
     printf(" [ft_write] Output_01 = %d\n", filewrite);
     char swrite[11] = "Hello World";
-    printf(" [write] Output_02 = %zd\n", write(filewrite, swrite, 11));
+    printf(" [ft_write] Output_02 = %zd\n", ft_write(filewrite, swrite, 11));
     close(filewrite);
 
-    int filewrite2 = open("srcs/test.txt", O_RDWR);
+    int filewrite2 = open("srcs/testt.txt", O_RDWR);
     printf(" [write] Output_01 = %d\n", filewrite2);
     char swrite2[11] = "Hello World";
     printf(" [write] Output_02 = %zd\n", write(filewrite2, swrite2, 11));
