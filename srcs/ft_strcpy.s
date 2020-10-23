@@ -1,7 +1,7 @@
 section .text
-	global _ft_strcpy
+	global ft_strcpy
 
-_ft_strcpy:
+ft_strcpy:
     mov     rax,    			rsi
     mov     rcx,    			0
 

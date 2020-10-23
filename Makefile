@@ -1,18 +1,14 @@
 NAME = libasm.a
 
-NASM = nasm
+CC	 =	gcc
 
-NASM_FLAGS = -f macho64
+HEADER = includes/
 
-CC = gcc
+MAIN =	srcs/main.c
 
-CFLAGS = -Wall -Wextra -Werror
+EXE =	exe
 
-HEADER = includes/libasm.h
-
-MAIN = srcs/main.c
-
-SRCS = srcs/ft_strlen.s \
+SRCS = 	srcs/ft_strlen.s \
 		srcs/ft_strcmp.s \
 		srcs/ft_strcpy.s \
 		srcs/ft_strdup.s \
@@ -21,25 +17,22 @@ SRCS = srcs/ft_strlen.s \
 
 OBJS = $(SRCS:.s=.o)
 
-PROG = libasm.out
-
-$(NAME): $(OBJS) $(HEADER) $(MAIN)
-		@ar rcs $(NAME) $(OBJS)
-		
-%.o: %.s
-	@nasm -f macho64 $< -o $@
+.s.o:
+	@nasm -f elf64 -s $< -o $(<:.s=.o)
 
 all: $(NAME)
 
-test: $(MAIN) $(NAME)
-		@$(CC) $(CFLAGS) -I $(HEADER) $(NAME) $(MAIN) -o $(PROG)
-		./$(PROG)
-
+$(NAME): $(OBJS)
+		@ar rcs $@ $(OBJS)
+		ranlib $(NAME)
+		
+test:	$(NAME)
+		$(CC) $(MAIN) -no-pie -L ./ -lasm -o $(EXE)
+		./$(EXE)
 clean:
 		rm -rf $(OBJS)
 
 fclean: clean
 		rm -rf $(NAME)
-		rm -rf $(PROG)
-
-re: fclean all
+		rm $(EXE)
+re:		fclean all

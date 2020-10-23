@@ -1,22 +1,23 @@
 section .text
-    extern _malloc, _ft_strlen, _ft_strcpy, ___error
-    global _ft_strdup
+    extern malloc, ft_strlen, ft_strcpy, __errno_location
+    global ft_strdup
 
-_ft_strdup:
+ft_strdup:
     push    rdi
-    call    _ft_strlen
+    call    ft_strlen
+	inc		rax
     mov     rdi,        rax
-    call    _malloc
+    call    malloc
     cmp     rax,        0
     je      null
     mov     rdi,        rax
     pop     rsi
-    call    _ft_strcpy
+    call    ft_strcpy
 	ret
 
 null:
     pop     rdi
-    call    ___error
+    call    __errno_location
 	mov		rdi,		12
     mov		[rax],		rdi
 	mov		rax,		0

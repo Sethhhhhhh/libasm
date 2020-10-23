@@ -1,31 +1,30 @@
 section .text
-    global _ft_strcmp
+    global ft_strcmp
 
-_ft_strcmp:
+ft_strcmp:
 loop:
-	cmp		byte [rdi],	0
-	jz		end
-	cmp		byte [rsi],	0
-	jz		end
-
 	mov		al, 		byte [rdi]
 	mov		ah, 		byte [rsi]
-	
+
+	test 	ax,			ax
+	jz		equal
+
 	cmp		al,			ah
-	jl		is_neg		
-	jg		is_pos
+	jg		pos
+	jl		neg
 
 	inc		rsi
 	inc		rdi
 	jmp		loop
 
-is_pos:
+pos:
 	mov		rax,		1
 	ret
 
-is_neg:
+neg:
 	mov		rax,		-1
 	ret
-end:
+
+equal:
 	mov		rax,		0
 	ret

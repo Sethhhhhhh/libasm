@@ -1,9 +1,9 @@
 section .text
-    global _ft_read
-    extern ___error
+    extern __errno_location
+    global ft_read
 
-_ft_read:
-    mov     rax,    0x02000003
+ft_read:
+    mov     rax,    0
     syscall
     cmp     rax,    0
     je      null
@@ -11,7 +11,7 @@ _ft_read:
 
 null:
     push    rdi
-    call    ___error
+    call    __errno_location
     pop     rdi
     mov		[rax],		rdi
 	mov		rax,		-1
